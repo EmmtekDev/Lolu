@@ -1,43 +1,40 @@
 import 'package:flutter/material.dart';
+import 'splash_screen.dart'; // Import the splash screen
+import 'onboard1.dart'; // Import your first onboarding page
+import 'onboard2.dart'; // Import your second onboarding page
+import 'onboard3.dart'; // Import your third onboarding page
+import 'homepage.dart'; // Import your homepage
+import 'Settings.dart'; // Import the Settings screen
+import 'SafariShareAPI.dart'; // Import the SafariShareAPI screen
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      debugShowCheckedModeBanner: false,
+      title: 'Onboarding App',
       theme: ThemeData(
-        // useMaterial3: false,
         primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(color: Colors.black, fontSize: 16),
+          bodyText2: TextStyle(color: Colors.black, fontSize: 14),
         ),
       ),
+      initialRoute: '/', // Start with SplashScreen
+      routes: {
+        '/': (context) => SplashScreen(), // Splash Screen
+        '/onboard1': (context) => Onboard1(), // Removed const
+        '/onboard2': (context) => Onboard2(), // Removed const
+        '/onboard3': (context) => Onboard3(), // Removed const
+        '/homepage': (context) => Homepage(), // Homepage route
+        '/settings': (context) => Settings(), // Settings route
+        '/safariShareAPI': (context) =>
+            SafariShareAPI(), // SafariShareAPI route
+      },
     );
   }
 }
